@@ -9,6 +9,7 @@ import {NoteService} from '../../app/note.service'
 export class HomePage {
   notes;
 
+  //método
   onItemClick (note){
     console.log ("item-click", note);
     this.navCtrl.push("DetailPage", {
