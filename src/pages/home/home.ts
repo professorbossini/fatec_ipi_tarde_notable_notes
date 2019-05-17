@@ -17,6 +17,10 @@ export class HomePage {
     });
   }
 
+  onAddClick (){
+    this.navCtrl.push ('DetailPage');
+  }
+
   constructor(public navCtrl: NavController, private noteService: NoteService) {
     this.notes = this.noteService.notes;                            
   }

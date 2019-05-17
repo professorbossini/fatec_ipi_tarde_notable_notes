@@ -17,16 +17,33 @@ import {NoteService} from '../../app/note.service'
 export class DetailPage {
 
   note;
+  newNoteFlag = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
                         private noteService: NoteService,
                             private alertCtrl: AlertController) {
     this.note = this.navParams.get("noteParam");
+    if (!this.note){
+      this.note = {
+        id: "",
+        date: "",
+        title: "",
+        content: ""
+      }
+      this.newNoteFlag = true;
+    }
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
+  }
+  ionViewWillLeave (){
+    if (this.newNoteFlag){
+      if (this.note.date != "" && 
+          this.note.title != "" && this.note.content != "")
+            this.noteService.addNote(this.note);
+    }
   }
 
   onTrash (){
